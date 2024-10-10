@@ -9,7 +9,6 @@ end
 
 When('I click the login button') do
   find(:xpath, "//input[@id='login-button']").click
-  sleep 3
 end
 
 Then('I should be logged in to the application') do
