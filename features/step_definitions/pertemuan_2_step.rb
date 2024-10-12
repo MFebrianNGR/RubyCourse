@@ -11,11 +11,11 @@ When('I click the login button on the login page') do
 end
 
 When('I click the add to cart button for the product {string} on the inventory page') do |product_name|
-  find(:xpath, "//div[div/a/div[text()='#{product_name}']]//button[contains(text(),'Add to cart')]").click
+  find(:xpath, "//*[@id='add-to-cart-sauce-labs-backpack']").click
 end
 
 Then('I can see remove button for the product {string} on the inventory page') do |product_name|
-  selector = "//div[contains(@class, 'inventory_item')]//div[text()='#{product_name}']/ancestor::div[contains(@class, 'inventory_item')]//button[contains(text(), 'Remove')]"
+  selector = "//*[@id='remove-sauce-labs-backpack']"
   find(:xpath, selector).should be_visible
-  sleep 
+  sleep 4
 end
