@@ -1,5 +1,3 @@
-require_relative 'page/base_page'
-
 class LoginPage < SitePrism::Page
   include BasePage
 
