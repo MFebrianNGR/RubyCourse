@@ -3,6 +3,7 @@ require 'capybara/rspec'
 require 'cucumber'
 require 'dotenv'
 require 'selenium-webdriver'
+require 'site_prism'
 require 'yaml'
 
 Dotenv.load
