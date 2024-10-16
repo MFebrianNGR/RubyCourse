@@ -1,0 +1,2 @@
+#default: Format Cucumber::Formatter::HTML -o features/support/reports/cucumber-test1.html
+default: -f pretty -f json -o features/support/reports/result-cucumber.json
