@@ -31,7 +31,7 @@ jobs:
           bundle install
 
       - name: Run Capybara tests
-        run: cucumber -t @login BROWSER=firefox HEADLESS=yes PRIVATE=yes --publish
+        run: cucumber -t @pertemuan-4 BROWSER=firefox HEADLESS=yes PRIVATE=yes --publish
 
       - name: Upload screenshots
         uses: actions/upload-artifact@v3
