@@ -3,6 +3,7 @@ require 'capybara/rspec'
 require 'cucumber'
 require 'dotenv'
 require 'report_builder'
+require 'rspec'
 require 'selenium-webdriver'
 require 'site_prism'
 require 'yaml'
@@ -12,6 +13,14 @@ Dotenv.load
 Capybara.register_driver :chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new
 
+  if ENV['HEADLESS'].downcase == 'yes'
+    options.add_argument('--headless')
+  end
+
+  if ENV['PRIVATE'].downcase == 'yes'
+    options.add_argument('--incognito')
+  end
+
   Capybara::Selenium::Driver.new(
     app,
     browser: :chrome,
@@ -20,8 +29,27 @@ Capybara.register_driver :chrome do |app|
   )
 end
 
+Capybara.register_driver :firefox do |app|
+  options = Selenium::WebDriver::Firefox::Options.new
+
+  if ENV['HEADLESS'].downcase == 'yes'
+    options.add_argument('--headless')
+  end
+
+  if ENV['PRIVATE'].downcase == 'yes'
+    options.add_argument('-private')
+  end
+
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :firefox,
+    options: options,
+    timeout: 30
+  )
+end
+
 Capybara.configure do |config|
-  config.default_driver = :chrome
+  config.default_driver = (ENV['BROWSER'] || 'firefox').to_sym
   config.default_max_wait_time = 30
 end
 
