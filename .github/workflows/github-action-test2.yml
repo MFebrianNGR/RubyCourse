@@ -2,14 +2,14 @@ name: Automation test scheduler (critical scenario)
 
 on:
   schedule:
-    - cron: */2 * * * *
+    - cron: 0 */5 * * *
   workflow_dispatch:
 
 jobs:
   automation-test:
     name: Automation test Ruby Capybara (febrian)
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v3
         with:
@@ -31,7 +31,7 @@ jobs:
           bundle install
 
       - name: Run Capybara tests
-        run: cucumber -t '@pertemuan-4' BROWSER=firefox HEADLESS=yes PRIVATE=yes --publish
+        run: cucumber -t @pertemuan-4 BROWSER=firefox HEADLESS=yes PRIVATE=yes --publish
 
       - name: Upload screenshots
         uses: actions/upload-artifact@v3
@@ -42,5 +42,5 @@ jobs:
       - name: Upload report artifact
         uses: actions/upload-artifact@v3
         with:
-         name: test-report
-         path: features/support/reports/test_result_*.html
+          name: test-report
+          path: features/support/reports/test_result_*.html
